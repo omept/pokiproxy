@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "Pokemon Api Proxi"', () => {
+      expect(appController.getHello()).toBe('Pokemon Api Proxi');
     });
   });
 });
