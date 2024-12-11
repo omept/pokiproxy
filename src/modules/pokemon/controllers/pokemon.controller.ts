@@ -1,5 +1,5 @@
 import { Controller, Get, HttpException, HttpStatus } from '@nestjs/common';
-import { PokemonService } from '../services/service';
+import { PokemonService } from '../services/pokemon.service';
 
 @Controller('pokemon')
 export class PokemonController {
