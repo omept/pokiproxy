@@ -37,12 +37,12 @@ describe('PokemonService', () => {
   });
 
   it('should return cached data if available', async () => {
-    const mockData = { results: [{ name: 'bulbasaur' }] };
+    const mockData = { data: [{ name: 'bulbasaur' }] };
     jest.spyOn(cacheManager, 'get').mockResolvedValue(mockData);
 
-    const data = await service.getPokemonList();
+    const data = await service.fetchPokimons(20,2);
     expect(data).toEqual(mockData);
-    expect(cacheManager.get).toHaveBeenCalledWith('pokemonList');
+    expect(cacheManager.get).toHaveBeenCalledWith('pokimons-20-2');
   });
 
   it('should fetch data from API if not cached', async () => {
@@ -62,8 +62,8 @@ describe('PokemonService', () => {
     jest.spyOn(cacheManager, 'get').mockResolvedValue(null);
     jest.spyOn(httpService, 'get').mockReturnValue(of(mockAxiosResponse));
 
-    const data = await service.getPokemonList();
+    const data = await service.fetchPokimons(10,1);
     expect(data).toEqual(mockData);
-    expect(cacheManager.set).toHaveBeenCalledWith('pokemonList', mockData, { ttl: 600 });
+    expect(cacheManager.set).toHaveBeenCalledWith('pokimons-10-1', mockData, 60*60*1000 );
   });
 });

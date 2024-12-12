@@ -14,25 +14,22 @@ export class PokemonService {
         @Inject(CACHE_MANAGER) private cacheManager: Cache,
     ) { }
 
-    async getPokemonList(): Promise<any> {
-        const cacheKey = 'pokemonList';
-
-        // Check cache first
+    async fetchPokimons(limit: number, page: number): Promise<any> {
+        const cacheKey = `pokimons-${limit}-${page}`;
         const cachedData = await this.cacheManager.get(cacheKey);
         if (cachedData) {
-            console.log("cahce data");
+            console.log(`Pokimons retrieved from cache: ${cacheKey}`);
             return cachedData;
         }
-        // Fetch data from the PokéAPI
+
+
+        const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${(page - 1) * limit}`;
         const response = await firstValueFrom(
-            this.httpService.get(`${this.API_URL}?limit=100`),
+            this.httpService.get(url, { timeout: 5000 }),
         );
-        const data = response.data;
-        console.log("non cache data");
 
-        // Store in cache
-        await this.cacheManager.set(cacheKey, data);
-
-        return data;
+        this.cacheManager.set(cacheKey, response.data, 60 * 60 * 1000); // Cache for 1 hour
+        console.log(`Pokimons fetched from external API: ${url}`);
+        return response.data;
     }
 }

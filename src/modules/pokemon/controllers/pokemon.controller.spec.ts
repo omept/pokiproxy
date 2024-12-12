@@ -13,7 +13,7 @@ describe('PokemonController', () => {
         {
           provide: PokemonService,
           useValue: {
-            getPokemonList: jest.fn(),
+            fetchPokimons: jest.fn(),
           },
         },
       ],
@@ -24,10 +24,10 @@ describe('PokemonController', () => {
   });
 
   it('should return Pokémon data', async () => {
-    const mockData = { results: [{ name: 'bulbasaur' }] };
-    jest.spyOn(service, 'getPokemonList').mockResolvedValue(mockData);
+    const mockData =  [{ name: 'bulbasaur' }] ;
+    jest.spyOn(service, 'fetchPokimons').mockResolvedValue(mockData);
 
-    const result = await controller.getPokemon();
-    expect(result).toEqual({ success: true, data: mockData });
+    const result = await controller.getPokimons();
+    expect(result).toEqual( mockData );
   });
 });
