@@ -63,12 +63,12 @@ src/
 
 1. Build the Docker image:
    ```bash
-   docker-compose build
+   docker compose build
    ```
 
 2. Run the container:
    ```bash
-   docker-compose up
+   docker compose up
    ```
 
 3. Access the application at `http://localhost:3000/pokemons`.
