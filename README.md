@@ -100,14 +100,8 @@ Fetches a list of Pokémon from the PokéAPI. Results are cached for 10 minutes 
 ## Key Features Implementation
 
 ### 1. **Request Timeout and Performance Logging**
-- Axios interceptors are used to set a timeout and log the duration of each request.
-- Logs are printed to the console and sent to Sentry for analysis.
 
-### 2. **Error Monitoring with Sentry**
-- The app initializes Sentry in `pages/_app.tsx` using the DSN provided in the environment variables.
-- Errors from PokéAPI requests are captured and forwarded to Sentry.
-
-### 3. **Dockerization**
+### 2. **Dockerization**
 - The `Dockerfile` and `docker-compose.yml` define the container environment and services for seamless deployment.
 - Exposes port `3000` for application access.
 
