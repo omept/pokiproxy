@@ -4,12 +4,12 @@ import { IsPositivePipe } from '../pipes/is-positive.pipe';
 
 const defaultLimit = 10;
 const defaultPage = 1;
-@Controller('pokemons')
+@Controller('api/pokemons')
 export class PokemonController {
   constructor(private readonly pokemonService: PokemonService) { }
 
   @Get()
-  async getPokimons(@Query('limit', new DefaultValuePipe(defaultLimit), ParseIntPipe, IsPositivePipe) limit: number, @Query('page',  new DefaultValuePipe(defaultPage), ParseIntPipe, IsPositivePipe) page: number): Promise<any> {
+  async getPokimons(@Query('limit', new DefaultValuePipe(defaultLimit), ParseIntPipe, IsPositivePipe) limit: number = defaultLimit, @Query('page',  new DefaultValuePipe(defaultPage), ParseIntPipe, IsPositivePipe) page: number = defaultPage): Promise<any> {
     try {
       const startTime = Date.now();
       page = page === 0 ? defaultPage: page;

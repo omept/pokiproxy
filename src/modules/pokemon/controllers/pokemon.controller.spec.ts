@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PokemonController } from './pokemon.controller';
 import { PokemonService } from '../services/pokemon.service';
+import PokemonResponse from '../types/pokemon-response';
+
 
 describe('PokemonController', () => {
   let controller: PokemonController;
@@ -24,7 +26,7 @@ describe('PokemonController', () => {
   });
 
   it('should return Pokémon data', async () => {
-    const mockData =  [{ name: 'bulbasaur' }] ;
+    const mockData: PokemonResponse = { count: 1, results: [{ name: 'bulbasaur', url: '' }] };
     jest.spyOn(service, 'fetchPokimons').mockResolvedValue(mockData);
 
     const result = await controller.getPokimons();

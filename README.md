@@ -29,7 +29,7 @@ src/
 │   │   │   └── pokemon-response.ts     # Interface defination for pokemon service response
 ├── main.ts                            # Application entry point
 ├── app.module.ts                      # Root module
-├── app.controller.ts                  # Root controller (if needed)
+├── app.controller.ts                  # Root controller
 ├── app.service.ts                     # Root service
 
 ```
@@ -61,31 +61,39 @@ src/
    npm run start:dev
    ```
 
-4. Access the application at `http://localhost:3000/pokemons`. or by applying a filter `http://localhost:3000/pokemons?limit=100&page=1`
+4. Access the application at `http://localhost:3000/api/pokemons`. or by applying a filter `http://localhost:3000/api/pokemons?limit=100&page=1`
+
+* page and limit are positive numbers and defaults to 1 and 10 respectively.
 
 ### Dockerized Deployment
 
 1. Build the Docker image:
    ```bash
-   docker compose build
+   docker compose build -d
    ```
 
 2. Run the container:
    ```bash
-   docker compose up
+   docker compose up -d
    ```
 
-3. Access the application at `http://localhost:3000/pokemons`.
+3. Access the application at `http://localhost:3000/api/pokemons`. Or by applying a filter `http://localhost:3000/api/pokemons?limit=100&page=1`
 
+* page and limit are positive numbers and defaults to 1 and 10 respectively.
 ---
 
 ## API Details
 
 ### Endpoint
-`GET /pokemons`
+`GET /api/pokemons`
 
 ### Description
 Fetches a list of Pokémon from the PokéAPI. Results are cached for 60 minutes to reduce API calls.
+
+### Query Params
+limit: number (defaults to 10)
+page: number (defaults to 1)
+
 
 ### Response Example
 ```json
@@ -103,7 +111,7 @@ Fetches a list of Pokémon from the PokéAPI. Results are cached for 60 minutes 
 
 ## Key Features Implementation
 
-### 1. **Request Timeout and Performance Logging**
+### 1. **External Request Call Timeout and Performance Logging**
 
 ### 2. **Dockerization**
 - The `Dockerfile` and `docker-compose.yml` define the container environment and services for seamless deployment.
@@ -115,7 +123,6 @@ Fetches a list of Pokémon from the PokéAPI. Results are cached for 60 minutes 
 - **Nest.js**: Nodejs framework.
 - **Axios**: HTTP client for making requests to the PokéAPI.
 - **NodeCache**: Caching library for reducing redundant API calls.
-- **Sentry**: Error monitoring and performance tracking.
 - **Docker**: Containerization platform for deployment.
 
 ---
@@ -125,7 +132,7 @@ Fetches a list of Pokémon from the PokéAPI. Results are cached for 60 minutes 
 1. **Jest Testing**:
    - Run jest test with `npm run test`
 2. **Manual Testing**:
-   - Access the endpoint at `http://localhost:3000/pokemons` to verify data retrieval and logging.
+   - Access the endpoint at `http://localhost:3000/api/pokemons` to verify data retrieval and logging.
 
 3. **Docker Testing**:
    - Ensure the app runs successfully in a containerized environment with `docker-compose`.
@@ -133,11 +140,10 @@ Fetches a list of Pokémon from the PokéAPI. Results are cached for 60 minutes 
 ---
 
 ## Time Spent
-- Initial Setup: 2 hours
-- Request Timeout and Logging: 1 hour
-- Sentry Integration: 1 hour
-- Dockerization: 2 hours
-- Documentation: 1 hour
-- **Total**: 7 hours
+- Initial Setup: 1 hours
+- Api endpoint, Request Timeout, and Logging: 2 hour
+- Dockerization: 1 hours
+- Documentation: 2 hour
+- **Total**: 6 hours
 
 ---
