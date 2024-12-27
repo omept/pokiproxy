@@ -4,17 +4,7 @@ import { Inject } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
 import { Cache } from 'cache-manager';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
-
-
-interface PokemonResult {
-    name: string;
-    url: string;
-  }
-  
-  interface PokemonResponse {
-    count: number;
-    results: PokemonResult[];
-  }
+import PokemonResponse from '../types/pokemon-response';
 
 
 @Injectable()

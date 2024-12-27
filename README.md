@@ -23,6 +23,10 @@ src/
 │   │   │   └── pokemon.controller.ts  # Controller handling HTTP requests
 │   │   ├── services/
 │   │   │   └── pokemon.service.ts     # Service handling business logic
+│   │   ├── pipes/
+│   │   │   └── is-positive.pipe.ts     # Pipe for transforming query param
+│   │   ├── types/
+│   │   │   └── pokemon-response.ts     # Interface defination for pokemon service response
 ├── main.ts                            # Application entry point
 ├── app.module.ts                      # Root module
 ├── app.controller.ts                  # Root controller (if needed)
@@ -81,7 +85,7 @@ src/
 `GET /pokemons`
 
 ### Description
-Fetches a list of Pokémon from the PokéAPI. Results are cached for 10 minutes to reduce API calls.
+Fetches a list of Pokémon from the PokéAPI. Results are cached for 60 minutes to reduce API calls.
 
 ### Response Example
 ```json
