@@ -2,14 +2,12 @@
 
 This project is a scalable Nestjs application that acts as a proxy service for fetching Pokémon data from the PokéAPI. The app demonstrates modern backend development practices, including:
 - Request timeouts and performance logging.
-- Integration with Sentry for error monitoring and logging.
 - Dockerization for easy deployment.
 
 ## Features
 1. **Fetch Pokémon Data**: Retrieves a list of Pokémon from the PokéAPI with caching to reduce external API calls.
 2. **Request Timeout**: Ensures that PokéAPI requests do not hang indefinitely.
 3. **Performance Logging**: Logs the duration of each API request to aid in debugging and performance monitoring.
-4. **Error Monitoring**: Integrates with Sentry to capture and track errors in production.
 5. **Dockerized Deployment**: Fully containerized setup for consistent environments across development and production.
 
 ---
