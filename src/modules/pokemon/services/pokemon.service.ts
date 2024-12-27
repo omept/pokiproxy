@@ -5,6 +5,18 @@ import { firstValueFrom } from 'rxjs';
 import { Cache } from 'cache-manager';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 
+
+interface PokemonResult {
+    name: string;
+    url: string;
+  }
+  
+  interface PokemonResponse {
+    count: number;
+    results: PokemonResult[];
+  }
+
+
 @Injectable()
 export class PokemonService {
     private readonly API_URL = 'https://pokeapi.co/api/v2/pokemon';
@@ -14,9 +26,9 @@ export class PokemonService {
         @Inject(CACHE_MANAGER) private cacheManager: Cache,
     ) { }
 
-    async fetchPokimons(limit: number, page: number): Promise<any> {
+    async fetchPokimons(limit: number, page: number): Promise<PokemonResponse> {
         const cacheKey = `pokimons-${limit}-${page}`;
-        const cachedData = await this.cacheManager.get(cacheKey);
+        const cachedData = await this.cacheManager.get<PokemonResponse>(cacheKey);
         if (cachedData) {
             console.log(`Pokimons retrieved from cache: ${cacheKey}`);
             return cachedData;
@@ -28,8 +40,18 @@ export class PokemonService {
             this.httpService.get(url, { timeout: 5000 }),
         );
 
-        this.cacheManager.set(cacheKey, response.data, 60 * 60 * 1000); // Cache for 1 hour
+        const pokemonResponse: PokemonResponse = {
+            count: response.data.count,
+            results: response.data.results.map((pokemon: any) => ({
+                name: pokemon.name,
+                url: pokemon.url,
+            })),
+        };
+
+        this.cacheManager.set(cacheKey,pokemonResponse, 60 * 60 * 1000); // Cache for 1 hour
         console.log(`Pokimons fetched from external API: ${url}`);
-        return response.data;
+        return pokemonResponse;
     }
 }
+
+
