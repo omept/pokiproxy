@@ -19,10 +19,12 @@ src/
 │   ├── pokemon/
 │   │   ├── controllers/
 │   │   │   └── pokemon.controller.ts  # Controller handling HTTP requests
-│   │   ├── services/
-│   │   │   └── pokemon.service.ts     # Service handling business logic
+│   │   ├── interceptors/
+│   │   │   └── request-time-logger.interceptor.ts     # Request time logger interceptor
 │   │   ├── pipes/
 │   │   │   └── is-positive.pipe.ts     # Pipe for transforming query param
+│   │   ├── services/
+│   │   │   └── pokemon.service.ts     # Service handling business logic
 │   │   ├── types/
 │   │   │   └── pokemon-response.ts     # Interface defination for pokemon service response
 ├── main.ts                            # Application entry point
