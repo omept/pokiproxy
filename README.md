@@ -39,7 +39,7 @@ src/
 ## Setup and Installation
 
 ### Prerequisites
-- Node.js v18 or later
+- Node.js v20 or later
 - Docker & Docker Compose
 
 ### Local Development
@@ -63,23 +63,18 @@ src/
 
 4. Access the application at `http://localhost:3000/api/pokemons`. or by applying a filter `http://localhost:3000/api/pokemons?limit=100&page=1`
 
-* page and limit are positive numbers and defaults to 1 and 10 respectively.
+* `page` and `limit` are positive numbers and defaults to 1 and 10 respectively.
 
 ### Dockerized Deployment
 
-1. Build the Docker image:
+1. Build and run the application :
    ```bash
-   docker compose build -d
+   docker compose up -d --build
    ```
 
-2. Run the container:
-   ```bash
-   docker compose up -d
-   ```
+2. Access the application at `http://localhost:3000`. Or access the proxied endpoint : `http://localhost:3000/api/pokemons?limit=100&page=1`
 
-3. Access the application at `http://localhost:3000/api/pokemons`. Or by applying a filter `http://localhost:3000/api/pokemons?limit=100&page=1`
-
-* page and limit are positive numbers and defaults to 1 and 10 respectively.
+* `page` and `limit` are positive numbers and defaults to 1 and 10 respectively.
 ---
 
 ## API Details

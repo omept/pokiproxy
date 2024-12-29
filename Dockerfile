@@ -1,17 +1,13 @@
-# Use Node.js LTS version
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install --only=production
-
 # Copy the application code
 COPY . .
+
+# Install dependencies
+RUN npm install 
 
 # Build the application
 RUN npm run build
