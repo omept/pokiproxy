@@ -129,9 +129,6 @@ page: number (defaults to 1)
 2. **Manual Testing**:
    - Access the endpoint at `http://localhost:3000/api/pokemons` to verify data retrieval and logging.
 
-3. **Docker Testing**:
-   - Ensure the app runs successfully in a containerized environment with `docker-compose`.
-
 ---
 
 ## Time Spent
